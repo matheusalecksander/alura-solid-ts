@@ -4,15 +4,17 @@ export class CalculaSalario {
   constructor(private readonly salarioBase: number = 1000) {}
 
   calcular(cargo: Cargos) {
-    if (cargo === Cargos.Estagiario) {
-      return this.salarioBase * 1.2;
-    } else if (cargo === Cargos.Junior) {
-      return this.salarioBase * 3;
-    } else if (cargo === Cargos.Pleno) {
-      return this.salarioBase * 5;
-    } else if (cargo === Cargos.Senior) {
-      return this.salarioBase * 7;
+    const cargosXSalarios = {
+      [Cargos.Estagiario]: 1.2 * this.salarioBase,
+      [Cargos.Junior]: 3 * this.salarioBase,
+      [Cargos.Pleno]: 5 * this.salarioBase,
+      [Cargos.Senior]: 7 * this.salarioBase,
+    };
+
+    if (!cargosXSalarios[cargo]) {
+      return 0;
     }
-    return 0;
+
+    return cargosXSalarios[cargo];
   }
 }
